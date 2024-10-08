@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<title>Grid gradient</title>
+<link rel="icon" type="image/x-icon" href="favicon_animated2.ico">
+<style>
+.grid {
+    background-color: green;
+    padding: 1rem;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: auto 50% auto;
+    grid-template-rows: auto 20% auto;
+    justify-content: space-evenly;
+
+    //height: 15rem;
+    align-content: space-evenly;
+}
+
+.element {
+    background-color: orange;
+}
+
+h1 {
+    background-image: linear-gradient(-30deg, red, blue);
+    background-clip: text;
+    text-fill-color: transparent;
+    color: transparent;
+}
+</style>
+
+</head>
+<body>
+
+<div class="grid">
+<div class="element" id="element1">Hallo</div>
+<div class="element" id="element2">Hallo2</div>
+<div class="element" id="element3">Hallo3</div>
+
+
+<div class="element" id="element4" style="grid-row: 2 / 4">Hallo4</div>
+<div class="element" id="element5">Hallo5</div>
+<div class="element" id="element6">Hallo6</div>
+
+
+<div class="element" id="element7" style="grid-column: 2 / 4">Hallo7</div>
+</div>
+
+<p id="hallo" onclick="document.getElementById("hallo").innerHTML = '0';">Hallo</p>
+
+<h1>Das ist eine sehr lange Überschrift... Lorem ipsum dolor si amet</h1>
+
+<script>
+
+function onElementClicked(event) {
+    const id = event.target.id;
+    const num = parseInt(id.substr(id.length - 1, 1));
+    if(num >= 7) return;
+    
+    const otherId = "element" + (num + 1);
+    const otherElement = document.getElementById(otherId);
+    otherElement.hidden = !otherElement.hidden;
+}
+
+setTimeout(function() {
+    for(let i = 1; i <= 7; ++i) {
+        document.getElementById("element" + i).addEventListener("click", onElementClicked);
+    }
+}, 50);
+
+</script>
+</body>
+</html>
